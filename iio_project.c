@@ -47,8 +47,8 @@ static const struct iio_chan_spec fake_channels[] = {
 	FAKE_VOLTAGE_CHANNEL(3),
 };
 
-static const struct of_device_id iio_dummy_ids[] = {
-    { .compatible = "packt,iio-dummy-random", },
+static const struct i2c_device_id iio_project_ids[] = {
+    {"iio-project", 0 },
     { /* sentinel */ }
 };
 
@@ -58,7 +58,7 @@ static const struct iio_info fake_iio_info = {
 	.driver_module = THIS_MODULE,
 };
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe (struct i2c_client *pdev,const struct i2c_device_id *id)
 {
 	struct iio_dev *indio_dev;
 	struct my_private_data *data;
@@ -84,22 +84,37 @@ static int my_pdrv_probe (struct platform_device *pdev)
 	return 0;
 }
 
-static int my_pdrv_remove(struct platform_device *pdev)
+static int my_pdrv_remove(struct i2c_client *pdev)
 {
 	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
 	iio_device_unregister(indio_dev);
 	return 0;
 }
 
-static struct platform_driver mypdrv = {
+static struct i2c_driver mypdrv = {
 	.probe      = my_pdrv_probe,
 	.remove     = my_pdrv_remove,
 	.driver     = {
 		.name     = "iio-project",
-		.of_match_table = of_match_ptr(iio_dummy_ids),  
+		.id_table = iio_project_ids,  
 		.owner    = THIS_MODULE,
 	},
 };
-module_platform_driver(mypdrv);
-MODULE_AUTHOR("John Madieu <john.madieu@gmail.com>");
+module_i2c_driver(mypdrv);
+
+
+// static struct i2c_driver bh1750_driver = {
+// 	.driver = {
+// 		.name = "bh1750",
+// 		.pm = BH1750_PM_OPS,
+// 	},
+// 	.probe = bh1750_probe,
+// 	.remove = bh1750_remove,
+// 	.id_table = bh1750_id,
+
+// };
+// module_i2c_driver(bh1750_driver);
+
+
+MODULE_AUTHOR("Vinicius Cardoso");
 MODULE_LICENSE("GPL");

@@ -3,8 +3,8 @@
 # Variáveis
 	moduleName="iio_project.ko"					# Nome do módulo
 	projectFolder="/home/pi/linux-project"		# Pasta no RPi do Projeto
-	i2cAdress="2"								# Endereço do I2C do Arduino 									
-	deviceName="iio-project"					# Nome do Device
+	i2cAdress="8"								# Endereço do I2C do Arduino 									
+	deviceName="ARD"					# Nome do Device
 
 # Constantes
 	deviceFolder="/sys/bus/i2c/devices/i2c-1" 	# Pasta do Device
@@ -40,10 +40,10 @@
 
 	#### Tentar colocar um IF para ver se os dois módulos já subiram para não ficar tentando subir de novo.
 
-	sudo modprobe i2c-dev
+	modprobe i2c-dev
 	print_blue "> Module i2c-dev Up"
 
-	sudo modprobe i2c-bcm2835
+	modprobe i2c-bcm2835
 	print_blue "> Module i2c-bcm2835 Up"
 
 	## Final do IF
@@ -62,21 +62,25 @@
 	rmmod industrialio
 	
 	print_blue "> Limpando"
-	sudo make clean
+	make clean
 
 	print_blue "> Make no Módulo"
-	sudo make all
+	make all
 
 	print_blue "> Upando industrilio"
-	sudo modprobe industrilio
+	modprobe industrialio
 
-	ismod $projectFolder/$moduleName
+	print_blue "> Inicializando Módulo"
+	insmod $projectFolder/$moduleName
 
-	echo $deviceName $i2cAdress > $deviceFolder/new-device
+	print_blue "> Criando Device i2c"
+	echo $deviceName $i2cAdress > $deviceFolder/new_device
 
-	cat /sys/bus/iio/devices/iio\:device0/in_voltage0_raw
+	# print_blue "> Lendo Tensão"
+	# cat /sys/bus/iio/devices/iio\:device0/in_voltage0_raw
 
-	dmesg | tail -n 5
+	# print_blue "> Mostrar últimos 5 linhas do dmesg"
+	# dmesg | tail -n 5
 
 
 
