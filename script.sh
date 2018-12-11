@@ -1,5 +1,6 @@
 #! /bin/bash
 
+ModeleName="iio_project.ko"
 
 # Set Colors to Print
 function print_green()
@@ -25,3 +26,5 @@ print_green "> Module i2c-dev Up"
 
 sudo modprobe i2c-bcm2835
 print_green "> Module i2c-bcm2835 Up"
+
+
