@@ -4,10 +4,10 @@
 #include <linux/platform_device.h>      /* For platform devices */
 #include <linux/interrupt.h>            /* For IRQ */
 #include <linux/of.h>                   /* For DT*/
-#include <linux/iio/iio.h>    /* mandatory */
-#include <linux/iio/sysfs.h>  /* mandatory since sysfs are used */
-#include <linux/iio/events.h> /* For advanced users, to manage iio events */
-#include <linux/iio/buffer.h>  /* mandatory to use triggered buffers */
+#include <linux/iio/iio.h>    			/* mandatory */
+#include <linux/iio/sysfs.h>  			/* mandatory since sysfs are used */
+#include <linux/iio/events.h> 			/* For advanced users, to manage iio events */
+#include <linux/iio/buffer.h>  			/* mandatory to use triggered buffers */
 
 
 #define FAKE_VOLTAGE_CHANNEL(num)   \
@@ -95,7 +95,7 @@ static struct platform_driver mypdrv = {
 	.probe      = my_pdrv_probe,
 	.remove     = my_pdrv_remove,
 	.driver     = {
-		.name     = "iio-dummy-random",
+		.name     = "iio-project",
 		.of_match_table = of_match_ptr(iio_dummy_ids),  
 		.owner    = THIS_MODULE,
 	},
