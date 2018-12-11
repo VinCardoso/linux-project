@@ -4,7 +4,7 @@
 	moduleName="iio_project.ko"					# Nome do módulo
 	projectFolder="/home/pi/linux-project"		# Pasta no RPi do Projeto
 	i2cAdress="8"								# Endereço do I2C do Arduino 									
-	deviceName="ARD"					# Nome do Device
+	deviceName="iio-project"					# Nome do Device
 
 # Constantes
 	deviceFolder="/sys/bus/i2c/devices/i2c-1" 	# Pasta do Device
