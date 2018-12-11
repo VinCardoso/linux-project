@@ -1,4 +1,5 @@
 #include <linux/init.h>
+#include <linux/i2c.h>					/* i2c */
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/platform_device.h>      /* For platform devices */
@@ -58,20 +59,20 @@ static const struct iio_info fake_iio_info = {
 	.driver_module = THIS_MODULE,
 };
 
-static int my_pdrv_probe (struct i2c_client *pdev,const struct i2c_device_id *id)
+static int my_pdrv_probe (struct i2c_client *client,const struct i2c_device_id *id)
 {
 	struct iio_dev *indio_dev;
 	struct my_private_data *data;
 
-	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*data));
+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
 	if (!indio_dev) {
-		dev_err(&pdev->dev, "iio allocation failed!\n");
+		dev_err(&client->dev, "iio allocation failed!\n");
 		return -ENOMEM;
 	}
 
 	data = iio_priv(indio_dev);
 	mutex_init(&data->lock);
-	indio_dev->dev.parent = &pdev->dev;
+	indio_dev->dev.parent = &client->dev;
 	indio_dev->info = &fake_iio_info;
 	indio_dev->name = KBUILD_MODNAME;
 	indio_dev->modes = INDIO_DIRECT_MODE;
@@ -80,13 +81,13 @@ static int my_pdrv_probe (struct i2c_client *pdev,const struct i2c_device_id *id
 	indio_dev->available_scan_masks = 0xF;
 	iio_device_register(indio_dev);
 
-	platform_set_drvdata(pdev, indio_dev);
+	platform_set_drvdata(client, indio_dev);
 	return 0;
 }
 
-static int my_pdrv_remove(struct i2c_client *pdev)
+static int my_pdrv_remove(struct i2c_client *client)
 {
-	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+	struct iio_dev *indio_dev = platform_get_drvdata(client);
 	iio_device_unregister(indio_dev);
 	return 0;
 }
