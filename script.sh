@@ -34,17 +34,19 @@
 
 
 # Sequência
-
-	# sudo modprobe industrialio
-	# print_blue "> Module industrilio Up"
+	
+	# print_blue "> Upando industrilio Module"
+	# modprobe industrialio
+	
 
 	#### Tentar colocar um IF para ver se os dois módulos já subiram para não ficar tentando subir de novo.
 
+	print_blue "> Upando i2c-dev Module"
 	modprobe i2c-dev
-	print_blue "> Module i2c-dev Up"
-
+	
+	print_blue "> Upando i2c-bcm2835 Module"
 	modprobe i2c-bcm2835
-	print_blue "> Module i2c-bcm2835 Up"
+	
 
 	## Final do IF
 
