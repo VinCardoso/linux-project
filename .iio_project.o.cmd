@@ -1,9 +1,10 @@
-cmd_/home/pi/linux-project/iio_project.o := gcc -Wp,-MD,/home/pi/linux-project/.iio_project.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/6/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"iio_project"'  -DKBUILD_MODNAME='"iio_project"' -c -o /home/pi/linux-project/.tmp_iio_project.o /home/pi/linux-project/iio_project.c
+cmd_/home/pi/linux-project/iio_project.o := gcc -Wp,-MD,/home/pi/linux-project/.iio_project.o.d  -nostdinc -isystem /usr/lib/gcc/arm-linux-gnueabihf/6/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"iio_project"'  -DKBUILD_MODNAME='"iio_project"' -c -o /home/pi/linux-project/.tmp_iio_project.o /home/pi/linux-project/iio_project.c
 
 source_/home/pi/linux-project/iio_project.o := /home/pi/linux-project/iio_project.c
 
 deps_/home/pi/linux-project/iio_project.o := \
   include/linux/compiler_types.h \
+    $(wildcard include/config/have/arch/compiler/h.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
   include/linux/compiler-gcc.h \
@@ -34,11 +35,13 @@ deps_/home/pi/linux-project/iio_project.o := \
   include/uapi/asm-generic/posix_types.h \
   arch/arm/include/asm/barrier.h \
     $(wildcard include/config/cpu/32v6k.h) \
+    $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/arm/heavy/mb.h) \
     $(wildcard include/config/arm/dma/mem/bufferable.h) \
     $(wildcard include/config/smp.h) \
+    $(wildcard include/config/cpu/spectre.h) \
   include/asm-generic/barrier.h \
   include/linux/types.h \
     $(wildcard include/config/have/uid16.h) \
@@ -118,7 +121,6 @@ deps_/home/pi/linux-project/iio_project.o := \
     $(wildcard include/config/cpu/v7m.h) \
   arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/arm/thumb.h) \
-    $(wildcard include/config/thumb2/kernel.h) \
   arch/arm/include/uapi/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
   arch/arm/include/asm/hwcap.h \
