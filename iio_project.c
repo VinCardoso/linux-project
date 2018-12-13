@@ -44,6 +44,12 @@ static int read_raw(struct iio_dev *indio_dev,
 			ret = i2c_master_recv(data->client, buffer, 2);
 
 			printk(KERN_INFO "buff0: %d \n",(int )buffer[0]);
+			printk(KERN_INFO "buff1: %d \n",(int )buffer[1]);
+
+
+
+			*val = (int )buffer[0];
+			// *val2 = 2;
 
 			mutex_unlock(&data->lock);
 			if (ret < 0)

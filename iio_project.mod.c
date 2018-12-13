@@ -45,4 +45,4 @@ __attribute__((section(".modinfo"))) =
 
 MODULE_ALIAS("i2c:iio-project");
 
-MODULE_INFO(srcversion, "087BC97CC4BF980F52F1554");
+MODULE_INFO(srcversion, "80EE75B536FA781D813AE98");
