@@ -33,7 +33,7 @@ static int read_raw(struct iio_dev *indio_dev,
 			    int *val2, long mask)
 {
 
-	int ret, tmp;
+	int ret, tmp, result;
 	char buffer[2];
 	struct my_private_data *data = iio_priv(indio_dev);
 	// const struct bh1750_chip_info *chip_info = data->chip_info;
@@ -49,8 +49,8 @@ static int read_raw(struct iio_dev *indio_dev,
 			printk(KERN_INFO "buff1: %d \n",(int )buffer[1]);
 
 			if (channel->channel==0){
-				ressult= (buffer[1]<<8) +buffer[0];
-				*val = result
+				result= (buffer[1]<<8) +buffer[0];
+				*val = result;
 			}
 
 			if (channel->channel==1){
