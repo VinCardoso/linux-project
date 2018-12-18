@@ -10,6 +10,7 @@
 #include <linux/iio/events.h> 			/* For advanced users, to manage iio events */
 #include <linux/iio/buffer.h>  			/* mandatory to use triggered buffers */
 
+#include <linux/delay.h>
 
 #define FAKE_VOLTAGE_CHANNEL(num)   \
 	{                               \
@@ -24,6 +25,7 @@
 struct my_private_data {
 	struct i2c_client *client;
 	struct mutex lock;
+	u16 mtreg;
 };
 
 static int read_raw(struct iio_dev *indio_dev,
@@ -41,14 +43,24 @@ static int read_raw(struct iio_dev *indio_dev,
 		switch (channel->type) {
 		case IIO_VOLTAGE:
 			mutex_lock(&data->lock);
-			ret = i2c_master_recv(data->client, buffer, 2);
+			ret = i2c_master_recv(data->client, buffer, 4);
 
 			printk(KERN_INFO "buff0: %d \n",(int )buffer[0]);
 			printk(KERN_INFO "buff1: %d \n",(int )buffer[1]);
 
+			if (channel->channel==0){
+				ressult= (buffer[1]<<8) +buffer[0];
+				*val = result
+			}
+
+			if (channel->channel==1){
+				result= (buffer[3]<<8) +buffer[2];
+				*val = result;
+			}
 
 
-			*val = (int )buffer[0];
+
+			// *val = (int )buffer[0];
 			// *val2 = 2;
 
 			mutex_unlock(&data->lock);

@@ -750,6 +750,8 @@ deps_/home/pi/linux-project/iio_project.o := \
   include/linux/iio/events.h \
   include/uapi/linux/iio/events.h \
   include/linux/iio/buffer.h \
+  include/linux/delay.h \
+  arch/arm/include/asm/delay.h \
 
 /home/pi/linux-project/iio_project.o: $(deps_/home/pi/linux-project/iio_project.o)
 
